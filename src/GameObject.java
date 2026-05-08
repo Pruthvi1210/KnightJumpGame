@@ -1,4 +1,4 @@
-
+import java.awt.Graphics;
 import java.awt.Rectangle; 
 
 public class GameObject
@@ -19,6 +19,13 @@ public Rectangle getBounds()
 {
     return new Rectangle(x, y, width, height);
 }
+public void draw(Graphics g)
+{
 
+}
+public void update()
+{
+    
+}
 
 }

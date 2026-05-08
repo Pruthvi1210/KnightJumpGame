@@ -1,3 +1,4 @@
+import javax.swing.Timer;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
@@ -9,11 +10,28 @@ public class GamePanel extends JPanel implements KeyListener {
     int playerY = 250;
     int playerWidth = 80;
     int playerHeight = 80;
+    int velocityY = 0;
+    int gravity = 1;
+    boolean onGround = false;
    
     GamePanel() {
         this.setBackground(Color.BLACK);
         this.setFocusable(true);
         this.addKeyListener(this);
+        Timer timer = new Timer(16, e -> {
+            playerY += velocityY;
+            velocityY += gravity;
+
+            if (playerY >= 420) {
+                playerY = 420;
+                velocityY = 0;
+                onGround = true;
+            }
+            
+            repaint();
+        });
+
+        timer.start();
     }
 
     @Override
@@ -31,6 +49,10 @@ public class GamePanel extends JPanel implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             playerX += 10;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE && onGround) {
+            velocityY = -15;
+            onGround = false;
         }
         repaint();
     }
