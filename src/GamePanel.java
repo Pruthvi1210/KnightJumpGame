@@ -65,7 +65,18 @@ public class GamePanel extends JPanel implements KeyListener {
                     }
                 }
             }
-            
+            if (playerX < 0) {
+                playerX = 0;  
+            }
+            if (playerX + playerWidth > getWidth()) {
+                playerX = getWidth() - playerWidth;  
+            }
+            if (playerY < 0) {
+                playerY = 0;
+            }
+            if (playerY + playerHeight > getHeight()) {
+                playerY = getHeight() - playerHeight;
+            }
             repaint();
         });
 
