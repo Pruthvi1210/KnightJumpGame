@@ -39,9 +39,12 @@ public class GamePanel extends JPanel implements KeyListener {
         this.setFocusable(true);
         this.addKeyListener(this);
 
-        platforms.add(new Platform(500, 450, 200, 20));
-        platforms.add(new Platform(500, 350, 200, 20));
-        platforms.add(new Platform(500, 250, 200, 20));
+        platforms.add(new Platform(500, 550, 500, 20));      //p1
+        platforms.add(new Platform(380, 350, 200, 20));      //p2
+        platforms.add(new Platform(380, 350, 350, 20));      //p3
+        platforms.add(new Platform(1600, 700, 150, 20));      //p4
+        platforms.add(new Platform(1320, 800, 150, 20));      //p5
+        platforms.add(new Platform(1520, 880, 50, 20));      //p6
         
         enemies.add(new Enemy(300, 400, 40, 40, 2, 200, 400)); 
         
