@@ -6,8 +6,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.awt.Font;
 
 public class GamePanel extends JPanel implements KeyListener {
+    boolean titleScreen = true;
+
     int playerX = 40;
     int playerY = 500;
     int playerWidth = 50;
@@ -135,6 +138,20 @@ public class GamePanel extends JPanel implements KeyListener {
     protected void paintComponent (Graphics g) {
         super.paintComponent(g);
 
+        if (titleScreen) {
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
+
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", Font.BOLD, 60));
+            g.drawString("GRAVEBOUND", getWidth() / 2 - 220, getHeight() / 2 - 50);
+
+            g.setFont(new Font("Arial", Font.PLAIN, 30));
+            g.drawString("Press ENTER to Start", getWidth() / 2 - 150, getHeight() / 2 + 30);
+
+            return;
+        }
+
         g.setColor(Color.GRAY);
         for (Platform p : platforms) {
             g.fillRect(p.x, p.y, p.width, p.height);
@@ -174,6 +191,11 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+        if (titleScreen && e.getKeyCode() == KeyEvent.VK_ENTER) {
+            titleScreen = false;
+            return;
+        }
 
         if (e.getKeyCode() == KeyEvent.VK_R) {
             playerX = 350;
